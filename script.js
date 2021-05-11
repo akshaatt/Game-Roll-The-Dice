@@ -7,7 +7,8 @@ const current1El = document.getElementById('current--1');
 const diceEl = document.querySelector('.dice');
 const btnRoll = document.querySelector('.btn--roll');
 const btnNew = document.querySelector('.btn--new');
-const btnHold = document.querySelector('.btn--hold');
+let player0El = document.getElementById('player--0');
+let player1El = document.getElementById('player--1');
 
 score0El.textContent = 0;
 score1El.textContent = '0';
@@ -25,11 +26,17 @@ btnRoll.addEventListener('click', function () {
   //Checking Weather dice is 1 or else
   if (dice !== 1) {
     //Add dice to current score
+
     currentScore = currentScore + dice;
     document.querySelector(
-      `.current--${activePlayer}`
+      `#current--${activePlayer}`
     ).textContent = currentScore;
   } else {
+    player0El.classList.remove('.player--active');
+    player1El.classList.toggle('.player--active');
+    document.getElementById(`current--${activePlayer}`).textContent = 0;
+    // document.querySelector('.player').style.background = '';
+    activePlayer = activePlayer === 0 ? 1 : 0;
     currentScore = 0;
   }
 });
